@@ -3,8 +3,10 @@
 #include <string.h>
 #include <math.h>
 
-#define BRIGHTNESS     "/sys/class/backlight/amdgpu_bl1/brightness"
-#define MAX_BRIGHTNESS "/sys/class/backlight/amdgpu_bl1/max_brightness"
+#define PREFIX         "/sys/class/backlight/amdgpu_bl0/"
+
+#define BRIGHTNESS     PREFIX "brightness" 
+#define MAX_BRIGHTNESS PREFIX "max_brightness"
 
 int   brightness;
 char  brightness_str[8];
@@ -23,11 +25,8 @@ int main(int argc, char* argv[])
 	brightness_fp     = fopen(BRIGHTNESS, "w+");
 	max_brightness_fp = fopen(MAX_BRIGHTNESS, "r");
 
-	fgets(brightness_str, 8, brightness_fp);
-	brightness = atoi(brightness_str);
-
-	fgets(max_brightness_str, 8, max_brightness_fp);
-	max_brightness = atoi(max_brightness_str);
+	brightness = atoi(fgets(brightness_str, 8, brightness_fp));
+	max_brightness = atoi(fgets(max_brightness_str, 8, max_brightness_fp));
 
 	if (argc > 1) {
 		char *arg = argv[1];
