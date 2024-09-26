@@ -61,6 +61,8 @@ int main(int argc, char* argv[])
 	}
 
 	printf("%i/%i (%i%%)\n", new_brightness, max_brightness, new_brightness * 100 / max_brightness);
+
+	return 0;
 }
 
 int normalize(int brightness)
