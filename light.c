@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 				percent -= atoi(++arg);
 			else
 				percent = atoi(arg);
-			new_brightness = ceil((float) percent * 255 / 100);
+			new_brightness = ceil((float) percent * max_brightness / 100);
 		}
 		else {
 			if (arg[0] == '+')
